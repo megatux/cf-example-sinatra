@@ -15,7 +15,7 @@ get '/' do
   @port = ENV['CF_INSTANCE_PORT'] || "9292"
   @index = ENV['CF_INSTANCE_INDEX'] || "0"
 
-  vcap_services = JSON.parse(ENV['VCAP_SERVICES'])
+  vcap_services = JSON.parse(ENV.fetch('VCAP_SERVICES') { raise 'No VCAP_SERVICES set' })
   db_user = vcap_services['p-mysql'].first['credentials']['username']
   db_password = vcap_services['p-mysql'].first['credentials']['password']
   db_host = vcap_services['p-mysql'].first['credentials']['hostname']
