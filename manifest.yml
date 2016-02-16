@@ -1,0 +1,8 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: megatux-cf-sinatra-db
+  host: megatux-cf-sinatra-db
+  disk_quota: 1024M
