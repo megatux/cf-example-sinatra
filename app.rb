@@ -16,6 +16,7 @@ get '/' do
   @index = ENV['CF_INSTANCE_INDEX'] || "0"
 
   vcap_services = JSON.parse(ENV.fetch('VCAP_SERVICES') { raise 'No VCAP_SERVICES set' })
+  raise('No cleardb service set') unless vcap_services['cleardb']
   db_user = vcap_services['cleardb'].first['credentials']['username']
   db_password = vcap_services['cleardb'].first['credentials']['password']
   db_host = vcap_services['cleardb'].first['credentials']['hostname']
